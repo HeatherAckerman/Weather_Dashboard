@@ -12,7 +12,7 @@ For this project I used the OpenWeather API to create a Weather Checker complete
 
 Type in the city that you would like to check the weather for and click search. 
 
-<link rel="stylesheet" href="Screenshot 2020-10-06 212229.jpg">
+<img src="Screenshot 2020-10-06 212229.jpg">
 
 ## Installation Instructions
 
