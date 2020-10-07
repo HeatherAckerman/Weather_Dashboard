@@ -1,13 +1,12 @@
 $(document).ready(function () {
 
     var searchInput = document.getElementById("searchInput");
-    
 
     function showStoredInputs() {
 
         userSearch = searchInput.value.trim();
         var prevSearches = JSON.parse(localStorage.getItem("pastSearches"));
-        $("#historyDisplay").text(userSearch + prevSearches);
+        $("#historyDisplay").text(prevSearches);
     };
 
 
@@ -15,7 +14,7 @@ $(document).ready(function () {
         event.preventDefault();
 
         var userSearch = searchInput.value.trim();
-        // console.log(userSearch)
+       
         localStorage.setItem("pastSearches", JSON.stringify(userSearch));
         futrueForecast();
         showStoredInputs();
