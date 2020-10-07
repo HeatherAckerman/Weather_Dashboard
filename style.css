@@ -1,0 +1,56 @@
+.container {
+    background-color: rgb(171, 171, 173);
+}
+#navbar {
+   font-size: 25px;
+    color: white;
+    padding: 15px;
+}
+
+h3 {
+    font-size: 13px;
+    color: white;
+    background: rgb(3, 3, 3, .5);
+    margin:15px;
+    padding: 5px;
+}
+
+#searchInput {
+    margin: 10px;
+}
+
+#searchButton {
+    margin: 10px; 
+    background-color: black;
+    color: white;
+}
+
+#resultsDisplay {
+    text-align: center;
+    color: white;
+    padding:30px;
+    background: rgb(3, 3, 3, .5);
+}
+
+#futureForcast {
+    text-align: center;
+}
+
+#historyDisplay {
+    background: rgb(3, 3, 3, .5);
+}
+
+.favorable {
+
+    color: green; 
+}
+  
+.moderate {
+   
+    color: orange;
+}
+  
+.severe {
+    
+    color: red;  
+}
