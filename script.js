@@ -34,9 +34,9 @@ $(document).ready(function () {
             $("#resultCity").text(response.name);
             $("#resultCity").append(date);
             $("#resultCity").append(icon);
-            $("#resultTemp").text(finalTemp.toFixed(2) + "F");
-            $("#resultHumidity").text(response.main.humidity + "%");
-            $("#resultWindSpeed").text(response.wind.speed + "MPH");
+            $("#resultTemp").text("Temperature: " + finalTemp.toFixed(0) + " °F");
+            $("#resultHumidity").text("Humidity: " + response.main.humidity + " %");
+            $("#resultWindSpeed").text("Wind Speed: " + response.wind.speed.toFixed(0) + " MPH");
 
             var lat = response.coord.lat
             var lon = response.coord.lon
@@ -57,7 +57,7 @@ $(document).ready(function () {
                     $("#resultUVIndex").addClass("severe");
                 };
 
-                $("#resultUVIndex").text(response.value);
+                $("#resultUVIndex").text("UV Index: " + response.value);
 
             });
         });
@@ -74,14 +74,14 @@ $(document).ready(function () {
                 var counter = 1
                 for (var i = 0; i < response.list.length; i += 8) {
 
-                    var date = (response.list[i].dt_txt);
+                    var date = (new Date(response.list[i].dt_txt).toLocaleDateString());
                     var weatherIcon = response.list[i].weather[0].icon;
                     var finalTemp = (response.list[i].main.temp - 273.15) * 1.80 + 32;
                 
                     $("#day" + counter).text(date);
                     $("#day" + counter + "Icon").attr("src", "https://openweathermap.org/img/wn/" + weatherIcon + "@2x.png");
-                    $("#day" + counter + "Temp").text(finalTemp.toFixed(2) + "F");
-                    $("#day" + counter + "Humid").text(response.list[i].main.humidity + "%");
+                    $("#day" + counter + "Temp").text(finalTemp.toFixed(0) + " °F");
+                    $("#day" + counter + "Humid").text(response.list[i].main.humidity + " %");
                     counter++;
                 };
             });
