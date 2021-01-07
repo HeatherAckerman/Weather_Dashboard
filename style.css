@@ -5,6 +5,8 @@
    font-size: 25px;
     color: white;
     padding: 15px;
+    text-align: center;
+    margin: 0 auto;
 }
 
 h3 {
@@ -30,10 +32,12 @@ h3 {
     color: white;
     padding:30px;
     background: rgb(3, 3, 3, .5);
+    margin: 0 auto;
 }
 
 #futureForcast {
     text-align: center;
+    margin: 0 auto;
 }
 
 #historyDisplay {

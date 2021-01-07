@@ -1,6 +1,7 @@
 $(document).ready(function () {
 
     var searchInput = document.getElementById("searchInput");
+    var userSearch = searchInput.value.trim();
 
     function showStoredInputs() {
 
@@ -10,21 +11,24 @@ $(document).ready(function () {
     };
 
 
-    $("#searchButton").on("click", function(event) {
+    $("#searchButton").on("click", function (event) {
         event.preventDefault();
 
         var userSearch = searchInput.value.trim();
-       
-        localStorage.setItem("pastSearches", JSON.stringify(userSearch));
-        futrueForecast();
-        showStoredInputs();
 
+        localStorage.setItem("pastSearches", JSON.stringify(userSearch));
+        getWeather(userSearch);
+        futrueForecast(userSearch);
+        showStoredInputs(userSearch);
+    });
+
+    function getWeather(userSearch) {
         var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + userSearch + "&appid=4ff6ab9359b7b09fa3cf50ce41a36923";
 
         $.ajax({
             url: queryURL,
             method: "GET"
-        }).then(function(response) {
+        }).then(function (response) {
 
             var weatherIcon = response.weather[0].icon;
             var date = $("<h2>").text(moment().format('l'));
@@ -45,7 +49,7 @@ $(document).ready(function () {
             $.ajax({
                 url: queryURL,
                 method: "GET"
-            }).then(function(response) {
+            }).then(function (response) {
                 // console.log(response)
                 var uvIndex = response.value;
 
@@ -61,31 +65,32 @@ $(document).ready(function () {
 
             });
         });
+    }
 
-        function futrueForecast() {
+    function futrueForecast(userSearch) {
 
-            var queryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + userSearch + "&appid=4ff6ab9359b7b09fa3cf50ce41a36923";
+        var queryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + userSearch + "&appid=4ff6ab9359b7b09fa3cf50ce41a36923";
 
-            $.ajax({
-                url: queryURL,
-                method: "GET"
-            }).then(function(response) {
-                // console.log(response)
-                var counter = 1
-                for (var i = 0; i < response.list.length; i += 8) {
+        $.ajax({
+            url: queryURL,
+            method: "GET"
+        }).then(function (response) {
+            // console.log(response)
+            var counter = 1
+            for (var i = 0; i < response.list.length; i += 8) {
 
-                    var date = (new Date(response.list[i].dt_txt).toLocaleDateString());
-                    var weatherIcon = response.list[i].weather[0].icon;
-                    var finalTemp = (response.list[i].main.temp - 273.15) * 1.80 + 32;
-                
-                    $("#day" + counter).text(date);
-                    $("#day" + counter + "Icon").attr("src", "https://openweathermap.org/img/wn/" + weatherIcon + "@2x.png");
-                    $("#day" + counter + "Temp").text(finalTemp.toFixed(0) + " °F");
-                    $("#day" + counter + "Humid").text(response.list[i].main.humidity + " %");
-                    counter++;
-                };
-            });
-        };
-    });
+                var date = (new Date(response.list[i].dt_txt).toLocaleDateString());
+                var weatherIcon = response.list[i].weather[0].icon;
+                var finalTemp = (response.list[i].main.temp - 273.15) * 1.80 + 32;
+
+                $("#day" + counter).text(date);
+                $("#day" + counter + "Icon").attr("src", "https://openweathermap.org/img/wn/" + weatherIcon + "@2x.png");
+                $("#day" + counter + "Temp").text(finalTemp.toFixed(0) + " °F");
+                $("#day" + counter + "Humid").text(response.list[i].main.humidity + " %");
+                counter++;
+            };
+        });
+    };
+
 });
 
