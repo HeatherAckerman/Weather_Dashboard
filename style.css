@@ -1,6 +1,7 @@
 .container {
-    background-color: rgb(171, 171, 173);
+    background-color: rgb(75, 75, 75);
 }
+
 #navbar {
    font-size: 25px;
     color: white;
@@ -9,12 +10,27 @@
     margin: 0 auto;
 }
 
-h3 {
-    font-size: 13px;
+h1 {
+    font-size: 30px;
+    text-align: center;
+    font-weight: bolder;
     color: white;
-    background: rgb(3, 3, 3, .5);
     margin:15px;
     padding: 5px;
+}
+
+h3 {
+    font-size: 15px;
+    color: white;
+    margin:15px;
+    padding: 5px;
+    font-weight: lighter;
+    text-decoration: underline;
+}
+
+#citySearch {
+    text-align: center;
+    margin: 0 auto;
 }
 
 #searchInput {
@@ -23,7 +39,7 @@ h3 {
 
 #searchButton {
     margin: 10px; 
-    background-color: black;
+    background-color: rgb(65, 65, 65);
     color: white;
 }
 
@@ -33,6 +49,7 @@ h3 {
     padding:30px;
     background: rgb(3, 3, 3, .5);
     margin: 0 auto;
+    width: 75%;
 }
 
 #futureForcast {
